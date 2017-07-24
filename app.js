@@ -14,4 +14,4 @@ app.get('/', (req,res) => {
 app.use('/games', games)
 
 
-app.listen(process.env.DATABASE_URL || 8080)
+app.listen(process.env.PORT || 8080)
