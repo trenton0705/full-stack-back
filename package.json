@@ -3,17 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "knex": "^0.13.0",
     "pg": "^7.0.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node ./app.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
