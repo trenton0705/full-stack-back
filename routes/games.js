@@ -12,10 +12,14 @@ router.post('/', (req, res) => {
   let name = req.body.name
   let publisher = req.body.publisher
   let release = req.body.release
-  knex('games').insert({name: name, publisher: publisher, release: release}).returning('id')
-  .then((id) => {
-    res.send(id)
-  })
+  knex('games').insert({
+      name: name,
+      publisher: publisher,
+      release: release
+    }).returning('id')
+    .then((id) => {
+      res.send(id)
+    })
 })
 
 router.get('/:id', (req, res) => {
@@ -23,6 +27,23 @@ router.get('/:id', (req, res) => {
   knex('games').where('id', id)
     .then((data) => {
       res.json(data);
+    })
+})
+
+router.put('/:id', (req, res) => {
+  let id = req.params.id
+  let name = req.body.name
+  let publisher = req.body.publisher
+  let release = req.body.release
+
+  knex('games').where('id', id)
+    .update({
+      name: name,
+      publisher: publisher,
+      release: release
+    }).returning('*')
+    .then((data) => {
+      res.send(data)
     })
 })
 
