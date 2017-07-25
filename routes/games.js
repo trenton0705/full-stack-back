@@ -8,12 +8,22 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/:id', (req,res) => {
+router.post('/', (req, res) => {
+  let name = req.body.name
+  let publisher = req.body.publisher
+  let release = req.body.release
+  knex('games').insert({name: name, publisher: publisher, release: release}).returning('id')
+  .then((id) => {
+    res.send(id)
+  })
+})
+
+router.get('/:id', (req, res) => {
   let id = req.params.id
   knex('games').where('id', id)
-  .then((data) => {
-    res.json(data);
-  })
+    .then((data) => {
+      res.json(data);
+    })
 })
 
 module.exports = router;
