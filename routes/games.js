@@ -23,6 +23,7 @@ router.post('/', (req, res) => {
         res.send(id)
       })
   } else {
+    res.status(500)
     res.json({
       message: 'Invalid User Input'
     })
@@ -55,6 +56,7 @@ router.put('/:id', (req, res) => {
         res.send(data)
       })
   } else {
+    res.status(500)
     res.json({
       message: 'Invalid User Input'
     })
