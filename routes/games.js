@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  if(validate(req.body)) {
+  if (validate(req.body)) {
     let name = req.body.name
     let publisher = req.body.publisher
     let release = req.body.release
@@ -23,25 +23,23 @@ router.post('/', (req, res) => {
         res.send(id)
       })
   } else {
-    res.json({message: 'Invalid User Input'})
+    res.json({
+      message: 'Invalid User Input'
+    })
   }
 
 })
 
 router.get('/:id', (req, res) => {
-  if(checkId(req.params.id)) {
-    let id = req.params.id
-    knex('games').where('id', id)
-      .then((data) => {
-        res.json(data);
-      })
-  } else {
-    res.json({message: 'Invalid ID'})
-  }
+  let id = req.params.id
+  knex('games').where('id', id)
+    .then((data) => {
+      res.json(data);
+    })
 })
 
 router.put('/:id', (req, res) => {
-  if(checkId(req.params.id) && validate(req.body)) {
+  if (validate(req.body)) {
     let id = req.params.id
     let name = req.body.name
     let publisher = req.body.publisher
@@ -57,22 +55,22 @@ router.put('/:id', (req, res) => {
         res.send(data)
       })
   } else {
-    res.json({message: 'Invalid User Input'})
+    res.json({
+      message: 'Invalid User Input'
+    })
   }
 })
 
 router.delete('/:id', (req, res) => {
-  if(checkId(req.params.id)) {
-    let id = req.params.id
+  let id = req.params.id
 
-    knex('games').where('id', id)
+  knex('games').where('id', id)
     .del()
     .then(() => {
-      res.json({message: 'Success'})
+      res.json({
+        message: 'Success'
+      })
     })
-  } else {
-    res.json({message: 'Invalid ID'})
-  }
 })
 
 module.exports = router;
@@ -83,8 +81,4 @@ function validate(data) {
   let verifyRelease = typeof data.release == 'number'
 
   return verifyName && verifyPublisher && verifyRelease
-}
-
-function checkId(data) {
-  return typeof data == 'number'
 }
