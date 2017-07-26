@@ -47,4 +47,14 @@ router.put('/:id', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+  let id = req.params.id
+
+  knex('games').where('id', id)
+  .del()
+  .then(() => {
+    res.json({message: 'Success'})
+  })
+})
+
 module.exports = router;
