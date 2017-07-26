@@ -80,7 +80,7 @@ module.exports = router;
 function validate(data) {
   let verifyName = typeof data.name == 'string' && data.name.trim() != ''
   let verifyPublisher = typeof data.publisher == 'string' && data.publisher.trim() != ''
-  let verifyRelease = typeof parseInt(data.release) == 'number'
+  let verifyRelease = typeof data.release == 'number'
 
   return verifyName && verifyPublisher && verifyRelease
 }
